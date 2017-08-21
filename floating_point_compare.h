@@ -12,10 +12,22 @@ struct delimiter
 };
 }
 
-template<int precission = 8, class Left, class Right>
+template<int precission, class Left, class Right>
 constexpr bool floating_point_compare(const Left &left, const Right &right)
 {
-    return std::abs(left - right) < detail::delimiter<Left, precission>::value;
+	using common_type = typename std::common_type<Left, Right>::type;
+	static_assert(std::is_floating_point<common_type>::value, "Only floating point types");
+	
+    return std::abs(left - right) < detail::delimiter<common_type, precission>::value;
+}
+
+template<class Left, class Right>
+constexpr bool floating_point_compare(const Left &left, const Right &right)
+{
+	using common_type = typename std::common_type<Left, Right>::type;
+	static_assert(std::is_floating_point<common_type>::value, "Only floating point types");
+	
+    return std::abs(left - right) < std::numeric_limits<common_type>::epsilon();
 }
 
 #endif // FLOATING_POINT_COMPARE_H
