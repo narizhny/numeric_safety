@@ -110,7 +110,7 @@ template<> struct CompareTypeChecker<false, true> {typedef RightSigned CompareTy
 
 template<class Left,
          class Right,
-         template<class Left, class Right, class Type> class Operator>
+         template<class, class, class> class Operator>
 struct Comparer
 {
     static_assert(std::is_arithmetic<Left>::value && std::is_arithmetic<Right>::value, "Types should be arithmetic");
