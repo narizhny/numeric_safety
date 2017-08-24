@@ -96,7 +96,7 @@ struct EqualOperator<Left, Right, RightSigned>
     constexpr static bool compare(const Left &left, const Right &right)
     {
         return right > 0
-                && left = static_cast<Left>(right);
+                && left == static_cast<Left>(right);
     }
 };
 
