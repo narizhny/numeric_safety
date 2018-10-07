@@ -1,7 +1,9 @@
 #ifndef FLOATING_POINT_COMPARE_H
 #define FLOATING_POINT_COMPARE_H
 
-#include <math.h>
+#include <cmath>
+#include <type_traits>
+#include <limits>
 
 namespace detail
 {
